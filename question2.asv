@@ -1,53 +1,38 @@
+clear all
+%% format of graph
+fontsize=14;
+set(0, 'defaultUicontrolFontName', 'Times New Roman');
+set(groot, 'defaultAxesFontName','Times New Roman');
+set(groot, 'defaultTextFontName','Times New Roman');
+set(groot, 'defaultUicontrolFontSize', fontsize);
+set(groot, 'defaultAxesFontSize', fontsize);
+set(groot, 'defaultTextFontSize', fontsize);
+set(groot, 'defaultLegendLocation', 'northoutside')
+set(groot, 'defaultLegendOrientation', 'horizontal')
+set(groot, 'defaultLineLineWidth', 2)
+set(groot,'defaultFigureColor','w')
+color = [0 0 0;
+        0 0 1;
+        0 0.5 0;];
+style='-|-.|:|--';
+set(groot,'DefaultAxesLineStyleOrder',style,'defaultAxesColorOrder',color)
+
+%% draw the graph
 l_1=1.0;
 l_2=2+368/1000;
 
-% f=@(x_1,x_2,y_2) (x_2-l_1).^2+y_2.^2-(x_2-x_1).^2-(y_2-sqrt(l_2.^2-x_1.^2)).^2;
-% fimplicit3(f);
+t=linspace(l_1-l_2,l_1+l_2,100);
+x_2=t;
+y_2_positive=sqrt(l_2^2-(t-l_1).^2);
+y_2_negative=-sqrt(l_2^2-(t-l_1).^2);
+x_2_squared=l_2^2-(t-l_1).^2;
+x_1=l_1*(-1+2*t.^2./(l_2^2-l_1+2*t*l_1));
 
-% hold on
-% figure(1)
-% syms x_1 x_2 y_2
-% f= x_2.^2*(x_1-l_1).^2-(l_1.^2-x_1.^2)*y_2.^2; 
-% fimplicit3(f);
-% title('xsin(y) + zcos(x) for -2\pi < x < 2\pi and -2\pi < y < 2\pi')
-% xlabel('x_1')
-% ylabel('x_2')
-% zlabel('y_2')
-% ax = gca;
 
-syms x y z
-eqn = x*sin(y) + z*cos(x);
-fimplicit3(eqn,[-2*pi 2*pi])
-title('xsin(y) + zcos(x) for -2\pi < x < 2\pi and -2\pi < y < 2\pi')
-xlabel('x')
-ylabel('y')
+plot3(x_1,x_2,y_2_positive,x_1,x_2,y_2_negative);
+title('C_x_1')
+xlabel('x_2')
+ylabel('x_2')
+zlabel('y_2')
 ax = gca;
-
-S = sym(ax.XLim(1):pi/2:ax.XLim(2));
-S = sym(round(vpa(S/pi*2))*pi/2);
-ax.XTick = double(S);
-ax.XTickLabel = arrayfun(@texlabel,S,'UniformOutput',false);
-
-S = sym(ax.YLim(1):pi/2:ax.YLim(2));
-S = sym(round(vpa(S/pi*2))*pi/2);
-ax.YTick = double(S);
-ax.YTickLabel = arrayfun(@texlabel, S, 'UniformOutput', false);
-
-
-% S = sym(ax.XLim(1):pi/2:ax.XLim(2));
-% S = sym(round(vpa(S/pi*2))*pi/2);
-% ax.XTick = double(S);
-% ax.XTickLabel = arrayfun(@texlabel,S,'UniformOutput',false);
-
-% S = sym(ax.YLim(1):pi/2:ax.YLim(2));
-% S = sym(round(vpa(S/pi*2))*pi/2);
-% ax.YTick = double(S);
-% ax.YTickLabel = arrayfun(@texlabel, S, 'UniformOutput', false);
-hold off
-
-% f=@(x_1,x_2,y_2) (x_2-x_1).^2+(y_2-sqrt(l_2.^2-x_1.^2)).^2-l_2.^2-((x_2-l_1).^2+y_2.^2-l_2.^2);
-% fimplicit3(f);
-
-% f=@(x_1,x_2,y_2) ((l_2.^2-l_1.^2)+2*x_1*x_2-x_2.^2-y_2^2)-4*y_2^2*(l_1^2-x_1^2);
-% fimplicit3(f);
-
+grid on

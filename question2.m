@@ -1,3 +1,4 @@
+clear all
 %% format of graph
 fontsize=14;
 set(0, 'defaultUicontrolFontName', 'Times New Roman');
@@ -20,11 +21,19 @@ set(groot,'DefaultAxesLineStyleOrder',style,'defaultAxesColorOrder',color)
 l_1=1.0;
 l_2=2+368/1000;
 
-syms x_1 x_2 y_2
-f= x_2.^2*(x_1-l_1).^2-(l_1.^2-x_1.^2)*y_2.^2; 
-fimplicit3(f);
+t=linspace(l_1-l_2,l_1+l_2,100);
+x_2=t;
+y_2_positive=sqrt(l_2^2-(t-l_1).^2);
+y_2_negative=-sqrt(l_2^2-(t-l_1).^2);
+x_2_squared=l_2^2-(t-l_1).^2;
+x_1=l_1*(-1+2*t.^2./(l_2^2-l_1+2*t*l_1));
+
+
+plot3(x_2,y_2_positive,x_1,x_2,y_2_negative,x_1);
 title('C_x_1')
-xlabel('x_1')
-ylabel('x_2')
-zlabel('y_2')
+xlabel('x_2')
+ylabel('y_2')
+zlabel('x_1')
+
 ax = gca;
+grid on

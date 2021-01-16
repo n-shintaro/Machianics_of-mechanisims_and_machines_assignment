@@ -20,11 +20,17 @@ set(groot,'DefaultAxesLineStyleOrder',style,'defaultAxesColorOrder',color)
 l_1=1.0;
 l_2=2+368/1000;
 
-syms x_2 y_1 y_2
-f=(2*x_2*l_1+l_2.^2-l_1.^2+2*y_1*y_2).^2-4*x_2.^2*(l_1.^2-y_1.^2); 
-fimplicit3(f);
-title('C_y_1')
+t=linspace(l_1-l_2,l_1+l_2,100);
+x_2=t;
+y_2_positive=sqrt(l_2^2-(t-l_1).^2);
+y_2_negative=-sqrt(l_2^2-(t-l_1).^2);
+x_2_squared=l_2^2-(t-l_1).^2;
+x_1=l_1*(-1+2*t.^2./(l_2^2-l_1+2*t*l_1));
+
+
+plot3(x_2,y_2_positive,x_1,x_2,y_2_negative,x_1);
+title('C_x_1')
 xlabel('x_2')
-ylabel('y_1')
-zlabel('y_2')
+ylabel('y_2')
+zlabel('x_1')
 ax = gca;
