@@ -1,3 +1,4 @@
+clear all
 %% format of graph
 fontsize=14;
 set(0, 'defaultUicontrolFontName', 'Times New Roman');
@@ -19,26 +20,22 @@ set(groot,'DefaultAxesLineStyleOrder',style,'defaultAxesColorOrder',color)
 %% draw the graph
 l_1=1.0;
 l_2=2+368/1000;
+%th_1=1:2*pi:0.1;
+syms th_1 th_2
 
-t=linspace(-l_2,l_2,100);
-y_2=t;
-x_2_positive=l_2+sqrt(l_2^2-y_2.^2);
-x_2_negative=l_2-sqrt(l_2^2-y_2.^2);
-x_1_positive=l_1*(-1+2*x_2_positive.^2./(l_2^2-l_1^2+2*x_2_positive*l_1));
-x_1_negative=l_1*(-1+2*x_2_negative.^2./(l_2^2-l_1^2+2*x_2_negative*l_1));
-y_1_positive=sqrt(l_1^2-x_1_positive.^2);
-y_1_negative=-sqrt(l_1^2-x_1_positive.^2);
-plot3(x_1_positive,y_1_positive,y_2);
-hold on
-plot3(x_1_positive,y_1_negative,y_2);
-plot3(x_1_negative,y_1_positive,y_2);
-plot3(x_1_negative,y_1_negative,y_2);
-hold off
-%positive,x_2,y_2_negative,y_1_negative,x_2,y_2_positive,y_1_negative,x_2,y_2_negative,y_1_positive);
-
-title('C_y_2')
-xlabel('x_1')
-ylabel('y_1')
-zlabel('y_2')
-ax = gca;
+equation=l_1.*(1-cos(th_1))+l_2*(-cos(th_1).*cos(th_2)-sin(th_1).*sin(th_2)+cos(th_2));
+fimplicit(equation,[0 2*pi 0 2*pi])
+title('2D plot of C')
+xlabel('th_1')
+ylabel('th_2')
 grid on
+
+th_1=linspace(0, 2*pi,100);
+th_2=linspace(0, 2*pi,100);
+[Th1,Th2]=meshgrid(th_1,th_2); 
+
+x=(l_2+l_1.*cos(th_1)).*cos(th_2);
+y=(l_2+l_1.*cos(th_1)).*sin(th_2);
+z=l_1.*sin(th_1);
+surf(x,y,z);
+

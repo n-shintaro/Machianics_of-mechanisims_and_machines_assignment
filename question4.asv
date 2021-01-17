@@ -1,4 +1,3 @@
-clear all
 %% format of graph
 fontsize=14;
 set(0, 'defaultUicontrolFontName', 'Times New Roman');
@@ -22,17 +21,18 @@ l_1=1.0;
 l_2=2+368/1000;
 
 t=linspace(l_1-l_2,l_1+l_2,100);
-x_2=t;
-y_2_positive=sqrt(l_2^2-(t-l_1).^2);
-y_2_negative=-sqrt(l_2^2-(t-l_1).^2);
-x_2_squared=l_2^2-(t-l_1).^2;
-x_1=l_1*(-1+2*t.^2./(l_2^2-l_1+2*t*l_1));
+y_2=t;
+x_2_positive=l_2+sqrt(l_2^2-y_2^2);
+x_2_negative=l_2-sqrt(l_2^2-y_2^2);
+x_1=l_1*(-1+2*x_2_positive.^2./(l_2^2-l_1^2+2*x_2_positive*l_1));
 
+y_1_positive=sqrt(l_1^2-x_1_positive.^2);
+y_1_negative=-sqrt(l_1^2-x_1_positive.^2);
+plot3(x_1_positive,y_1_positive,y_2);
+%positive,x_2,y_2_negative,y_1_negative,x_2,y_2_positive,y_1_negative,x_2,y_2_negative,y_1_positive);
 
-plot3(x_1,x_2,y_2_positive,x_1,x_2,y_2_negative);
-title('C_x_1')
-xlabel('x_2')
-ylabel('x_2')
+title('C_y_2')
+xlabel('x_1')
+ylabel('y_1')
 zlabel('y_2')
 ax = gca;
-grid on

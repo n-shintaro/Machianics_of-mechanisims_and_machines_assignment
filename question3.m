@@ -25,12 +25,14 @@ x_2=t;
 y_2_positive=sqrt(l_2^2-(t-l_1).^2);
 y_2_negative=-sqrt(l_2^2-(t-l_1).^2);
 x_2_squared=l_2^2-(t-l_1).^2;
-x_1=l_1*(-1+2*t.^2./(l_2^2-l_1+2*t*l_1));
+x_1=l_1*(-1+2*t.^2./(l_2^2-l_1^2+2*t*l_1));
+y_1_positive=sqrt(abs(l_1^2-(x_1).^2));
+y_1_negative=-sqrt(abs(l_1^2-(x_1).^2));
+plot3(x_2,y_2_positive,y_1_positive,x_2,y_2_negative,y_1_negative,x_2,y_2_positive,y_1_negative,x_2,y_2_negative,y_1_positive);
 
-
-plot3(x_2,y_2_positive,x_1,x_2,y_2_negative,x_1);
 title('C_x_1')
 xlabel('x_2')
 ylabel('y_2')
-zlabel('x_1')
+zlabel('y_1')
 ax = gca;
+grid on
