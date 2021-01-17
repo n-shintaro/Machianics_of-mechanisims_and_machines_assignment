@@ -27,7 +27,7 @@ equation=l_1.*(1-cos(th_1))+l_2*(-cos(th_1).*cos(th_2)-sin(th_1).*sin(th_2)+cos(
 fimplicit(equation,[0 2*pi 0 2*pi])
 title('2D plot of C')
 
-%% 
+%% draw 3D plot
 grid on 
 % draw the Torus
 a=linspace(0, 2*pi,100);
@@ -61,13 +61,8 @@ for i=1:size
 end
 
 
+%% additonal exploration
 
-% subplot(2,1,2);
-% plot(Th1,Th2,'r+');
-
-
-
-%% 
 %I try to use the function "vpasolve" 
 %but In the case of non-polynomial equations, vpasolve returns the first solution found.
 % so I can get all the feasible soultions.
