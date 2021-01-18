@@ -220,7 +220,7 @@ for i=1:length(th_1_q6)
         figure_number=figure_number+1;
         str = {'O_1','O_2','P_2','P_1','O_1'};
         P1=[l_1*cos(th_1_q6(i)),l_1*sin(th_1_q6(i))];
-        P2=[l_1+l_2*cos(th_2_q6_2(i)),l_2*sin(th_2_q6_2(i))];
+        P2=[l_1+l_2*cos(th_2_q6(i)),l_2*sin(th_2_q6(i))];
         p1=[0 l_1 P2(1) P1(1) 0];
         p2=[0 0 P2(2) P1(2) 0];
         plot(p1,p2,'ro');
@@ -395,26 +395,8 @@ zlabel('z')
 grid on
 legend('','','configuration space','(a)','(b)','(c)','torus')
 hold off
-th_1=[0,0,0];
-th_2=[0,-pi,pi];
-for i=1:length(th_1)
-        figure(figure_number)
-        figure_number=figure_number+1;
-        str = {'O_1','O_2','P_2','P_1','O_1'};
-        P1=[l_1*cos(th_1(i)),l_1*sin(th_1(i))];
-        P2=[l_1+l_2*cos(th_2(i)),l_2*sin(th_2(i))];
-        p1=[0 l_1 P2(1) P1(1) 0];
-        p2=[0 0 P2(2) P1(2) 0];
-        plot(p1,p2,'ro');
-        hold on
-        plot(p1,p2);
-        text(p1,p2,str);
-        xlim([-3 3])
-        ylim([-3 3])
-        grid on
-        hold off
-    
-end
+
+
 
 
 %% Another soultion of Q5
