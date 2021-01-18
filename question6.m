@@ -1,4 +1,5 @@
 clear all
+clf
 %% format of graph
 fontsize=14;
 set(0, 'defaultUicontrolFontName', 'Times New Roman');
@@ -150,9 +151,9 @@ Z=l_1.*sin(ans_th_1);
 plot3(X,Y,Z,'ro');
 
 
-%% draw the configuration
-for i=1:100
-    if ans_th_1~=0
+%% draw the configuration (without theta_1 is not equal to 0)
+for i=1000:1006
+    if ans_th_1(i)>0.01
         i
         figure(i+2)
         str = {'O_1','O_2','P_2','P_1','O_1'};
