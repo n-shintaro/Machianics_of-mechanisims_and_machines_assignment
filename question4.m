@@ -28,11 +28,11 @@ x_1_positive=l_1*(-1+2*x_2_positive.^2./(l_2^2-l_1^2+2*x_2_positive*l_1));
 x_1_negative=l_1*(-1+2*x_2_negative.^2./(l_2^2-l_1^2+2*x_2_negative*l_1));
 y_1_positive=sqrt(l_1^2-x_1_positive.^2);
 y_1_negative=-sqrt(l_1^2-x_1_positive.^2);
-plot3(x_1_positive,y_1_positive,y_2);
+plot3(x_1_positive,y_1_positive,y_2,'b');
 hold on
-plot3(x_1_positive,y_1_negative,y_2);
-plot3(x_1_negative,y_1_positive,y_2);
-plot3(x_1_negative,y_1_negative,y_2);
+plot3(x_1_positive,y_1_negative,y_2,'b');
+plot3(x_1_negative,y_1_positive,y_2,'b');
+plot3(x_1_negative,y_1_negative,y_2,'b');
 hold off
 %positive,x_2,y_2_negative,y_1_negative,x_2,y_2_positive,y_1_negative,x_2,y_2_negative,y_1_positive);
 

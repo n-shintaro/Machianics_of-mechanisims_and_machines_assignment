@@ -31,17 +31,15 @@ size=numel(th_2);
 error=1e-2;
 Th2=zeros(size,1);
 answer=zeros(8,2);
+% th_1=(0, pi/2,pi,3*pi/2)
 
 %th_1=linspace(0, 2*pi,1000);
-% draw the 2D plot of C
 syms th_1 th_2
 equation=l_1.*(1-cos(th_1))+l_2*(-cos(th_1).*cos(th_2)-sin(th_1).*sin(th_2)+cos(th_2));
-figure(1)
 fimplicit(equation,[0 2*pi])
 hold on
 grid on
-
-% draw  fon the 2D plot
+figure(1)
 th_1=linspace(0, 3*pi/2,4);
 th_2=linspace(0, 2*pi,1000);
 ans_th_1=zeros(100,1);
@@ -76,7 +74,7 @@ z=l_1.*sin(A);
 surf(x,y,z);
 hold on
 
-% configuration on the 3D plot
+% draw the configuration on the torus
 
 size=1000;
 error=0.001;

@@ -29,7 +29,7 @@ x_2_squared=l_2^2-(t-l_1).^2;
 x_1=l_1*(-1+2*t.^2./(l_2^2-l_1^2+2*t*l_1));
 
 
-plot3(x_2,y_2_positive,x_1,x_2,y_2_negative,x_1);
+plot3(x_2,y_2_positive,x_1,'b',x_2,y_2_negative,x_1,'b');
 title('C_x_1')
 xlabel('x_2')
 ylabel('y_2')

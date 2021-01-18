@@ -93,22 +93,22 @@ xlabel('theta_1')
 ylabel('theta_2')
 grid on
 
-% %draw the configuration on the torus
-% figure(2)
-% plot(th_1_0,th_2_0,'r');
-% hold on
-% plot(th_1_positive,th_2_positive,'r');
-% plot(th_1_negative,th_2_negative,'r');
-% %surf(x,y,z);
-% xlabel('x')
-% ylabel('y')
-% zlabel('z')
-% grid on
-% hold off
+%draw the configuration on the torus
+figure(2)
+plot(th_1_0,th_2_0,'r');
+hold on
+plot(th_1_positive,th_2_positive,'r');
+plot(th_1_negative,th_2_negative,'r');
+%surf(x,y,z);
+xlabel('x')
+ylabel('y')
+zlabel('z')
+grid on
+hold off
 
 
 %draw the configuration on the torus
-figure(2)
+figure(3)
 plot3(X_0,Y_0,Z_0,'r+');
 hold on
 plot3(X_positive,Y_positive,Z_positive,'r+');
@@ -124,7 +124,7 @@ hold off
 
 % answer of (a)
 th_2_a=linspace(0, 2*pi,100);
-th_1_a=zeros(length(th_2_a),1);
+th_2_a=linspace(0, 2*pi,100);
 % draw the graph
 figure(3)
 th_1=0:2*pi:0.1;
