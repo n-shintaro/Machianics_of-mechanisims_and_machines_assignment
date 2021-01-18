@@ -26,8 +26,8 @@ l_1=1.0;
 l_2=2+368/1000;
 th_2_0=linspace(-pi, pi,100);
 size=numel(th_2_0);
-Th1=zeros(size,1);
-Th2=zeros(size,1);
+Th1=zeros(1,size);
+Th2=zeros(1,size);
 
 for i=1:size
     Th2=th_2_0(i);
@@ -123,21 +123,67 @@ hold off
 %% Q7
 
 % answer of (a)
-th_2_a=linspace(0, 2*pi,100);
-th_1_a=zeros(length(th_2_a),1);
-% draw the graph
-figure(3)
+th_2_a=linspace(-pi, pi,100);
+th_1_a=zeros(1,length(th_2_a));
+
+
+% answer of (b)
+th_1_b=[0,0,0];
+th_2_b=[0,pi,-pi];
+
+% answer of (c)
+th_2_c=linspace(-pi, pi,100);
+th_1_c=zeros(1,length(th_2_a));
+
+% draw the answer on 2D plot
+figure(4)
 th_1=0:2*pi:0.1;
 syms th_1 th_2
 equation=l_1.*(1-cos(th_1))+l_2*(-cos(th_1).*cos(th_2)-sin(th_1).*sin(th_2)+cos(th_2));
-fimplicit(equation,[-pi pi -pi pi])
+fimplicit(equation,[-pi pi -pi pi],'r')
 hold on
-plot(th_1_a,th_2_a,'b+')
+plot(th_1_a,th_2_a,'b+','MarkerSize',10)
+plot(th_1_b,th_2_b,'ko','MarkerSize',15)
+plot(th_1_c,th_2_c,'g+','MarkerSize',5)
 xlim([-pi,pi])
 ylim([-pi,pi])
 xlabel('theta_1')
 ylabel('theta_2')
+legend('configuration space','(a)','(b)','(c)')
 grid on
+hold off
+%%draw the answer on the torus
+X_a=(l_2+l_1.*cos(th_1_a)).*cos(th_2_a);
+Y_a=(l_2+l_1.*cos(th_1_a)).*sin(th_2_a);
+Z_a=l_1.*sin(th_1_a);
+
+X_b=(l_2+l_1.*cos(th_1_b)).*cos(th_2_b);
+Y_b=(l_2+l_1.*cos(th_1_b)).*sin(th_2_b);
+Z_b=l_1.*sin(th_1_b);
+
+X_c=(l_2+l_1.*cos(th_1_c)).*cos(th_2_c);
+Y_c=(l_2+l_1.*cos(th_1_c)).*sin(th_2_c);
+Z_c=l_1.*sin(th_1_c);
+
+%%
+figure(5)
+plot3(X_0,Y_0,Z_0,'r+');
+hold on
+plot3(X_positive,Y_positive,Z_positive,'r+');
+plot3(X_negative,Y_negative,Z_negative,'r+');
+plot3(X_a,Y_a,Z_a,'b+','MarkerSize',15);
+plot3(X_b,Y_b,Z_b,'k+','MarkerSize',20);
+plot3(X_c,Y_c,Z_c,'g+','MarkerSize',5);
+
+surf(x,y,z);
+xlabel('x')
+ylabel('y')
+zlabel('z')
+
+grid on
+legend('','','configuration space','(a)','(b)','(c)','torus')
+hold off
+
 
 
 
