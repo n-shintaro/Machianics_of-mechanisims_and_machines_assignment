@@ -22,6 +22,7 @@ set(groot,'DefaultAxesLineStyleOrder',style,'defaultAxesColorOrder',color)
 %In the case of non-polynomial equations, vpasolve returns the first solution found.
 % therefore, proof by cases
 
+figure_number=1;
 l_1=1.0;
 l_2=2+368/1000;
 th_2_0=linspace(-pi, pi,100);
@@ -77,38 +78,27 @@ Z_negative=l_1.*sin(th_1_negative);
 a=linspace(-pi,pi,100);
 b=linspace(-pi, pi,100);
 [A,B]=meshgrid(a,b); 
-figure(2)
 x=(l_2+l_1.*cos(A)).*cos(B);
 y=(l_2+l_1.*cos(A)).*sin(B);
 z=l_1.*sin(A);
 
 %draw the graph
-figure(1)
+figure(figure_number)
+figure_number=figure_number+1;
 th_1=0:2*pi:0.1;
 syms th_1 th_2
 equation=l_1.*(1-cos(th_1))+l_2*(-cos(th_1).*cos(th_2)-sin(th_1).*sin(th_2)+cos(th_2));
-fimplicit(equation,[-pi pi -pi pi])
+fimplicit(equation,[-pi pi -pi pi],'r')
 title('2D plot of C')
 xlabel('theta_1')
 ylabel('theta_2')
 grid on
 
-% %draw the configuration on the torus
-% figure(2)
-% plot(th_1_0,th_2_0,'r');
-% hold on
-% plot(th_1_positive,th_2_positive,'r');
-% plot(th_1_negative,th_2_negative,'r');
-% %surf(x,y,z);
-% xlabel('x')
-% ylabel('y')
-% zlabel('z')
-% grid on
-% hold off
-
 
 %draw the configuration on the torus
-figure(2)
+
+figure(figure_number)
+figure_number=figure_number+1;
 plot3(X_0,Y_0,Z_0,'r+');
 hold on
 plot3(X_positive,Y_positive,Z_positive,'r+');
@@ -120,89 +110,6 @@ zlabel('z')
 grid on
 hold off
 
-%% Q7
-
-% to solve the simultaneous equations
-syms th_1 th_2
-equation1=l_1.*(1-cos(th_1))+l_2*(-cos(th_1).*cos(th_2)-sin(th_1).*sin(th_2)+cos(th_2));
-equation2=l_1.*sin(th_1)+l_2*(-sin(th_2-th_1));
-equation3=-l_2.*sin(th_2)+l_2*(sin(th_2-th_1));
-figure(3)
-
-fimplicit(equation1,[-pi pi])
-hold on
-fimplicit(equation2,[-pi pi])
-fimplicit(equation3,[-pi pi])
-xlabel('theta1')
-ylabel('theta2')
-legend('(1)','(2)','(3)')
-grid on
-hold off
-
-
-
-% answer of (a)
-th_1_a=[0,0,0];
-th_2_a=[0,pi,-pi];
-
-
-% answer of (b)
-th_2_b=linspace(-pi, pi,100);
-th_1_b=zeros(1,length(th_2_b));
-
-
-% answer of (c)
-th_1_c=[0,0,0];
-th_2_c=[0,pi,-pi];
-
-% draw the answer on 2D plot
-figure(4)
-th_1=0:2*pi:0.1;
-syms th_1 th_2
-equation=l_1.*(1-cos(th_1))+l_2*(-cos(th_1).*cos(th_2)-sin(th_1).*sin(th_2)+cos(th_2));
-fimplicit(equation,[-pi pi -pi pi],'r')
-hold on
-plot(th_1_a,th_2_a,'bo','MarkerSize',10)
-plot(th_1_b,th_2_b,'y+','MarkerSize',5)
-plot(th_1_c,th_2_c,'go','MarkerSize',15)
-xlim([-pi,pi])
-ylim([-pi,pi])
-xlabel('theta_1')
-ylabel('theta_2')
-legend('configuration space','(a)','(b)','(c)')
-grid on
-hold off
-
-%draw the answer on the torus
-X_a=(l_2+l_1.*cos(th_1_a)).*cos(th_2_a);
-Y_a=(l_2+l_1.*cos(th_1_a)).*sin(th_2_a);
-Z_a=l_1.*sin(th_1_a);
-
-X_b=(l_2+l_1.*cos(th_1_b)).*cos(th_2_b);
-Y_b=(l_2+l_1.*cos(th_1_b)).*sin(th_2_b);
-Z_b=l_1.*sin(th_1_b);
-
-X_c=(l_2+l_1.*cos(th_1_c)).*cos(th_2_c);
-Y_c=(l_2+l_1.*cos(th_1_c)).*sin(th_2_c);
-Z_c=l_1.*sin(th_1_c);
-
-figure(5)
-plot3(X_0,Y_0,Z_0,'r+');
-hold on
-plot3(X_positive,Y_positive,Z_positive,'r+');
-plot3(X_negative,Y_negative,Z_negative,'r+');
-plot3(X_a,Y_a,Z_a,'bo','MarkerSize',10);
-plot3(X_b,Y_b,Z_b,'y+','MarkerSize',5);
-plot3(X_c,Y_c,Z_c,'go','MarkerSize',15);
-
-surf(x,y,z);
-xlabel('x')
-ylabel('y')
-zlabel('z')
-
-grid on
-legend('','','configuration space','(a)','(b)','(c)','torus')
-hold off
 
 
 
